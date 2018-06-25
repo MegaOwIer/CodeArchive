@@ -1,0 +1,21 @@
+【BZOJ1822】【JSOI2010】Frozen Nova 冷冻波 二分加网络流加恶心的计算几何，WA了很多次（最近真是刷不动题）
+【BZOJ3520】dzy loves chemistry1 题解见专门的文章
+【BZOJ2946】【POI2000】Repetitions 和LCS2一模一样，那就贴代码了
+【BZOJ2610】【POI2003】Monkey 倒着处理，并查集维护
+【BZOJ3524】【poi2014】Couriers 按位二分，挂个链表直接二分就可以了
+【BZOJ3531】【SDOI2014】旅行 用线段树来维护树链剖分，改成动态开节点就可以了
+【BZOJ3212】【Pku3468】A Simple Problem with integers 呵呵呵
+【BZOJ3529】【SDOI2014】数表 离线，线性筛，树状数组。貌似我常数写翔了QAQ
+【BZOJ3530】【SDOI2014】数数 裸的AC自动机+数位DP。第一次知道原来10^9+7不等于10e9+7...我个沙茶
+【BZOJ1861】【ZJOI2006】书架 屯题计划终于过半，感觉心情舒畅啊。裸平衡树，乱搞即可。
+【BZOJ3091】城市旅行 LCT逗比题，莫名其妙的WA+莫名其妙的AC，真是不能多说
+【BZOJ3555】【CTSC2014】企鹅QQ hash，福利题
+【BZOJ3438】小M的作物 裸最小割
+【BZOJ3439】kpm的MC密码 所有倒序然后再Trie树上做子树第K大
+【BZOJ1880】【SDOI2009】Elaxia的路线 最短路乱搞（最近完全无法刷题QAQ）
+【BZOJ3144】【HNOI2013】切糕 神最小割
+【BZOJ3209】花神的数论题 数位DP
+【BZOJ1758】【WC2010】重建计划 二分+点分治+单调队列，卡常数真是猥琐
+【BZOJ3565】DZY loves Chinese 逗比题23333
+【BZOJ2668】【CQOI2012】交换棋子 费用流，建图细节有点恶心，WA90了好久
+【BZOJ2752】【HAOI2012】高速公路(road) 贴了城市旅行LCT的代码（慢的一比）。。这道题用线段树做就可以了。

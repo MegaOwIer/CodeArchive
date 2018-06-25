@@ -1,0 +1,91 @@
+http://jiruyi910387714.is-programmer.com/posts/60157.html
+【BZOJ1622】【USACO2008 Open】名字的力量 暴力
+【BZOJ1623】【USACO2008 Open】奶牛飞车 贪心
+【BZOJ1628】【USACO2007 Demo】City Skyline 堆
+【BZOJ1633】【USACO2007 Feb】牛的词典 DP
+【BZOJ1634】【USACO2007 Jan】护花 贪心
+【BZOJ1635】【USACO2007 Jan】最高的牛 不会捉..为什么可以不考虑那个<=的条件，求巨巨教我
+【BZOJ1636】【USACO2007 Jan】Balanced Lineup ST表
+【BZOJ1637】【USACO2007 Mar】Balanced Lineup sort一下乱搞搞
+【BZOJ1638】【USACO2007 Mar】奶牛交通 DAG上DP
+【BZOJ1639】【USACO2007 Mar】月度开支 二分贪心
+【BZOJ1640】【USACO2007 Nov】队列变换 贪心
+【BZOJ1641】【USACO2007 Nov】奶牛跨栏 用类似Prim的方法预处理即可
+【BZOJ1642】【USACO2007 Nov】挤奶时间 DP
+【BZOJ1643】【USACO2007 Oct】贝茜的秘密草坪 DP
+【BZOJ1644】【USACO2007 Oct】障碍训练课 拆点最短路
+【BZOJ1645】【USACO2007 Open】城市地平线 排序后线段树（AC500题留念
+【BZOJ1646】【USACO2007 Open】抓住那头牛 BFS
+【BZOJ1647】【USACO2007 Open】翻格子游戏 暴力第一行
+【BZOJ1649】【USACO2006 Dec】Cow Roller Coaster DP
+【BZOJ1650】【USACO2006 Dec】跳石子 二分贪心
+【BZOJ1651】【USACO2006 Feb】专用牛棚 堆贪心
+【BZOJ1652】【USACO2006 Feb】Treats for the Cows DP
+【BZOJ1653】【USACO2006 Feb】Backward Digit Sums 爆搜
+【BZOJ1654】【USACO2006 Jan】奶牛舞会 强连通分量
+【BZOJ1655】【USACO2006 Jan】奶牛商店 高精度DP
+【BZOJ1658】【USACO2006 Mar】滑水 sort贪心 
+【BZOJ1657】【USACO2006 Mar】奶牛的歌声 sort后set搞搞
+【BZOJ1660】【USACO2006 Nov】乱发节 ST表二分
+【BZOJ1661】【USACO2006 Nov】巨大的正方形 爆搜
+【BZOJ1662】【USACO2006 Nov】圆环数 组合数搞搞
+【BZOJ1663】【USACO2006 Open】赶集 DP
+【BZOJ1664】【USACO2006 Open】参加节日庆祝 DP
+【BZOJ1665】【USACO2006 Open】攀岩 最短路
+【BZOJ1668】【USACO2006 Oct】馅饼里的财富 DP
+【BZOJ1669】【USACO2006 Oct】饥饿的奶牛 DP（最长不下降子序列5000是闹咋样
+【BZOJ1671】【USACO2006 Dec】骑士 BFS即可
+【BZOJ1672】【USACO2005 Dec】清理牛棚 DP（离散化后细节很恶心
+【BZOJ1673】【USACO2005 Dec】天平 开始以为是贪心，结果居然是爆搜
+【BZOJ1674】【USACO2005】Part Acquisition 最短路
+【BZOJ1676】【USACO2005 Feb】饲料计算 暴力
+【BZOJ1677】【USACO2005 Jan】求和 背包
+【BZOJ1679】【USACO2005 Jan】牛的呼声 sort后随便搞
+【BZOJ1680】【USACO2005 Mar】yogurt factory 一开始以为是网络流，结果居然是贪心囧
+【BZOJ1681】【USACO2005 Mar】不在场的证明 最短路
+【BZOJ1682】【USACO2005 Mar】干草危机 最小生成树
+【BZOJ1683】【USACO2005 Nov】城市地平线 堆
+【BZOJ1684】【USACO2005 Oct】Close Encounter 暴力
+【BZOJ1685】【USACO2005 Oct】津贴 贪心，每次从大到小保证不超然后最后加一个最小的
+【BZOJ1688】【USACO2005 Open】疾病管理 状压DP
+【BZOJ1689】【USACO2005 Open】泥泞的路 贪心
+【BZOJ2014】【USACO2010 Feb】Chocolate buying sort贪心
+【BZOJ2015】【USACO2010 Feb】Chocolate giving 最短路
+【BZOJ2016】【USACO2010 Feb】Chocolate eating 二分贪心
+【BZOJ2019】【USACO2009 Nov】找工作 拆点最短路
+【BZOJ2020】【USACO2010 Jan】Buying foodII 贪心
+【BZOJ2021】【USACO2010 Jan】Cheese Towers DP
+【BZOJ2023】【USACO2005 Nov】数蚂蚁 暴力DP
+【BZOJ2100】【USACO2010 Dec】Apple Delivery 最短路
+【BZOJ2101】【USACO2010 Dec】藏宝箱 DP
+【BZOJ2102】【USACO2010 Dec】The Trough Game 暴力
+【BZOJ3016】【USACO2012 Nov】Clumsy Cows 贪心
+【BZOJ3017】【USACO2012 Nov】Cow Breeds DP
+【BZOJ3018】【USACO2012 Nov】Distant Pastures 最短路
+【BZOJ3296】【USACO2011 Open】Learning languages 并查集
+【BZOJ3297】【USACO2011 Open】forgot DP
+【BZOJ3298】【USACO2011 Open】cow checkers 递推出每一列不能取的点的值
+【BZOJ3299】【USACO2011 Open】玉米迷宫 最短路
+【BZOJ3300】【USACO2011 Feb】Best Parenthesis 递归处理
+【BZOJ3301】【USACO2011 Feb】Cow Line 直接推过去就好了
+【BZOJ3389】【USACO2004 Dec】安排值班 ST表优化DP
+【BZOJ3390】【USACO2004 Dec】牛的报复 最大生成树
+【BZOJ3391】【USACO2004 Dec】网络破坏 树形DP
+【BZOJ3392】【USACO2005 Feb】交易 最短路
+【BZOJ3396】【USACO2009 Jan】水流 最大流
+【BZOJ3398】【USACO2009 Feb】牡牛和牝牛 DP（题面里他喵的居然没有写取模
+【BZOJ3399】【USACO2009 Mar】城堡 贪心
+【BZOJ3400】【USACO2009 Mar】奶牛沙盘队 DP
+【BZOJ3402】【USACO2009 Open】捉迷藏 BFS
+【BZOJ3403】【USACO2009 Open】直线上的牛 STL
+【BZOJ3404】【USACO2009 Open】又见数字游戏 记忆化搜索
+【BZOJ3410】【USACO2009 Dec】自私的食草者 贪心
+【BZOJ3431】【USACO2014 Jan】Bessie Slowdown sort 扫一遍
+【BZOJ3432】【USACO2014 Jan】Cross Country Skiing 最小生成树
+【BZOJ3433】【USACO2014 Jan】Recording the Moolympics DP
+【BZOJ3434】【USACO2014 Feb】Secret Code DP
+【BZOJ3479】【USACO2014 Mar】Watering the Fields 最小生成树
+【BZOJ3480】【USACO2014 Mar】Mooo Moo DP
+【BZOJ3538】【USACO2014 Open】Dueling GPS 最短路
+【BZOJ3540】【USACO2014 Open】Fair Photography 树状数组+贪心
+【BZOJ3539】【USACO2014 Open】Odometer 数位DP

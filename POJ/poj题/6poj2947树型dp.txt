@@ -1,0 +1,118 @@
+http://blog.csdn.net/libin56842/article/details/9834101
+
+POJ1947：Rebuilding Roads(树形DP)
+分类： DP 2013-08-08 12:19 746人阅读 评论(0) 收藏 举报
+树形DPPOJ
+Description
+
+The cows have reconstructed Farmer John's farm, with its N barns (1 <= N <= 150, number 1..N) after the terrible earthquake last May. The cows didn't have time to rebuild any extra roads, so now there is exactly one way to get from any given barn to any other barn. Thus, the farm transportation system can be represented as a tree. 
+
+Farmer John wants to know how much damage another earthquake could do. He wants to know the minimum number of roads whose destruction would isolate a subtree of exactly P (1 <= P <= N) barns from the rest of the barns.
+Input
+
+* Line 1: Two integers, N and P 
+
+* Lines 2..N: N-1 lines, each with two integers I and J. Node I is node J's parent in the tree of roads. 
+Output
+
+A single line containing the integer that is the minimum number of roads that need to be destroyed for a subtree of P nodes to be isolated. 
+Sample Input
+
+11 6
+1 2
+1 3
+1 4
+1 5
+2 6
+2 7
+2 8
+4 9
+4 10
+4 11
+Sample Output
+
+2
+Hint
+
+[A subtree with nodes (1, 2, 3, 6, 7, 8) will become isolated if roads 1-4 and 1-5 are destroyed.] 
+题意：给出n,p，一共有n个节点，要求最少减去最少的边是多少，剩下p个节点
+思路：典型的树形DP，
+dp[s][i]:记录s结点，要得到一棵j个节点的子树去掉的最少边数
+ 考虑其儿子k
+ 1）如果不去掉k子树，则
+ dp[s][i] = min(dp[s][j]+dp[k][i-j])  0 <= j <= i
+
+ 2）如果去掉k子树，则
+ dp[s][i] =  dp[s][i]+1
+ 总的为
+ dp[s][i] = min (min(dp[s][j]+dp[k][i-j]) ,  dp[s][i]+1 )
+
+ 
+[cpp] view plaincopy
+#include <stdio.h>  
+#include <string.h>  
+#include <algorithm>  
+using namespace std;  
+  
+int n,p,root;  
+int dp[155][155];  
+int father[155],son[155],brother[155];  
+  
+void dfs(int root)  
+{  
+    int i,j,k,tem;  
+    for(i = 0; i<=p; i++)  
+        dp[root][i] = 10000000;  
+    dp[root][1] = 0;  
+    k = son[root];  
+    while(k)  
+    {  
+        dfs(k);  
+        for(i = p; i>=1; i--)  
+        {  
+            tem = dp[root][i]+1;  
+            for(j = 1; j<i; j++)  
+                tem = min(tem,dp[k][i-j]+dp[root][j]);  
+            dp[root][i] = tem;  
+        }  
+        k = brother[k];  
+    }  
+}  
+  
+int solve()  
+{  
+    int ans,i;  
+    dfs(root);  
+    ans = dp[root][p];  
+    for(i = 1; i<=n; i++)//除了根节点，其他节点要想成为独立的跟，必先与父节点断绝关系，所以要先加1  
+        ans = min(ans,dp[i][p]+1);  
+    return ans;  
+}  
+  
+int main()  
+{  
+    int i,x,y;  
+    while(~scanf("%d%d",&n,&p))  
+    {  
+        memset(father,0,sizeof(father));  
+        memset(son,0,sizeof(son));  
+        for(i = 1; i<n; i++)  
+        {  
+            scanf("%d%d",&x,&y);  
+            father[y] = 1;//记录该点有父亲节点  
+            brother[y] = son[x];//记录兄弟节点  
+            son[x] = y;//记录子节点  
+        }  
+        for(i = 1; i<=n; i++)  
+        {  
+            if(!father[i])//找到根节点  
+            {  
+                root = i;  
+                break;  
+            }  
+        }  
+        printf("%d\n",solve());  
+    }  
+  
+    return 0;  
+}  

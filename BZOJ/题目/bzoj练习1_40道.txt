@@ -1,0 +1,22 @@
+ bzoj3316 jc loves mkk 二分&单调队列
+ bzoj3517 翻硬币 数学
+ bzoj2749 外星人 数论
+ bzoj2748 音量调节 背包动规
+ bzoj3994 约数个数和 数论&莫比乌斯反演
+ uva11992 Fast Matrix Operations 线段树打标记
+ bzoj1408 robot 数论 
+ bzoj3997 组合数学 递推 
+ bzoj1078 斜堆 推理 
+ bzoj2819 NIM 树上两点间抑或值
+ bzoj2281 黑白棋 博弈论 
+ bzoj1188 分裂游戏 博弈论 
+ bzoj1093 最大半连通子图 强连通分量&记忆化搜索 
+ bzoj2561 最小生成树 最小割 
+ bzoj1197 花仙子的魔法 动态规划 
+ bzoj1196 公路修建 二分+最大生成树 
+ bzoj1143 祭祀 最大匹配 
+ la4255 Guess 差分约束 
+ bzoj1912 巡逻 树的直径 
+ bzoj1055 玩具取名 记忆化搜索 
+ bzoj1990 NOIP2007 树网的核 树的直径&单调队列维护最小值
+//http://blog.csdn.net/lych_cys/article/list/8
