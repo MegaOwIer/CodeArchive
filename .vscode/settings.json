@@ -24,7 +24,9 @@
         "optional": "cpp",
         "shared_mutex": "cpp",
         "sstream": "cpp",
-        "streambuf": "cpp"
+        "streambuf": "cpp",
+        "chrono": "cpp",
+        "limits": "cpp"
     },
     "editor.fontLigatures": true,
     "editor.mouseWheelZoom": true,
