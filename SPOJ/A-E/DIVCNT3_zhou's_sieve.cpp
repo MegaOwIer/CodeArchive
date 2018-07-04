@@ -56,8 +56,7 @@ void GetG(int P)
                 G0[j]+=(3*c+1)*(G0[tmp]+4*max(0,pi[tmp]-max(i,L0[tmp])));
         }
     }
-    for(int i=1;i<=SqrtN;i++)
-        G0[i]+=4*max(0,pi[i]-L0[i]),G[i]+=4*(P-L[i]);
+    G[1]+=4*(P-L[1]);
 }
 LL solve()
 {
