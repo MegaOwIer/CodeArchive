@@ -9,7 +9,7 @@ const LD pi=acosl(-1.0);
  
 int T,P,rev[MX],K,X;
 string N;
- 
+
 struct Complex
 {
 	LD x,y;
