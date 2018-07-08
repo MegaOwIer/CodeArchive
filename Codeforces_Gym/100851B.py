@@ -17,3 +17,4 @@ if __name__ == "__main__":
         x *= 10
         lenx += 1
     print(ans[N][0])
+    
