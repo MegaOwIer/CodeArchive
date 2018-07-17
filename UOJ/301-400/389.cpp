@@ -119,7 +119,6 @@ int main()
     S=N+1,T=N+2;
     for(int i=1;i<=N;i++)cin>>P[i];
     for(int i=1;i<=N;i++)fa[i]=i;
-    cout<<P[3]*P[4]<<endl;
     for(int i=1,u,v;i<=M;i++)
     {
         cin>>u>>v;
