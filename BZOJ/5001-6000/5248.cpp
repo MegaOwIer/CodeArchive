@@ -1,46 +1,42 @@
 #include<bits/stdc++.h>
 using namespace std;
-typedef long long LL;
-const int MX=12,INF=2000000000;
 
-int N,M,a[MX][MX],b[MX][MX],used[MX];
-LL pw[MX];
+typedef long long LL;
+const int MX=12,P=11,INF=2147483647;
+
+int N,M,used[MX],A[MX][MX],B[MX][MX];
 map<LL,int> dp;
 
 inline int read()
 {
-    static int x,c;
-    x=0,c=getchar();
+    int x=0,c=getchar();
     while(!isdigit(c))c=getchar();
     while(isdigit(c))x=x*10+c-'0',c=getchar();
     return x;
 }
-int dfs(LL S,int sgn)
+inline int max(int a,int b){return a>b?a:b;}
+inline int min(int a,int b){return a<b?a:b;}
+
+int dfs(LL S)
 {
     if(dp.count(S))return dp[S];
-    int ans;
-    if(sgn)
-    {
-        ans=-INF;
-        for(int i=1;i<=N;i++)if(used[i]<used[i-1]&&used[i]<M)
-            ++used[i],ans=max(ans,dfs(S+pw[i-1],sgn^1)+a[i][used[i]]),--used[i];
-    }
-    else
-    {
-        ans=INF;
-        for(int i=1;i<=N;i++)if(used[i]<used[i-1]&&used[i]<M)
-            ++used[i],ans=min(ans,dfs(S+pw[i-1],sgn^1)-b[i][used[i]]),--used[i];
-    }
+    int cnt=0,ans,(*cmp)(int,int),(*val)[MX];
+    LL tmp=1;
+    for(int i=1;i<=N;i++)cnt+=used[i];
+    if(cnt==N*M)return 0;
+    if(cnt&1)ans=INF,cmp=min,val=B;
+    else ans=-INF,cmp=max,val=A;
+    for(int i=1;i<=N;i++,tmp*=P)if(used[i]<M&&used[i]<used[i-1])
+        ++used[i],ans=cmp(ans,val[i][used[i]]+dfs(S+tmp)),--used[i];
     return dp[S]=ans;
 }
 
 int main()
 {
-    N=read(),M=read(),pw[0]=1;
-    for(int i=1;i<=N;i++)pw[i]=pw[i-1]*(M+1);
-    for(int i=1;i<=N;i++)for(int j=1;j<=M;j++)a[i][j]=read();
-    for(int i=1;i<=N;i++)for(int j=1;j<=M;j++)b[i][j]=read();
-    used[0]=M,dp[pw[N]-1]=0;
-    printf("%d\n",dfs(0,1));
+    N=read(),M=read();
+    for(int i=1;i<=N;i++)for(int j=1;j<=M;j++)A[i][j]=read();
+    for(int i=1;i<=N;i++)for(int j=1;j<=M;j++)B[i][j]=-read();
+    used[0]=MX;
+    cout<<dfs(0)<<endl;
     return 0;
 }
