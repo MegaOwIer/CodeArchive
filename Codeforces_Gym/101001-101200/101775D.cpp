@@ -3,6 +3,7 @@ using namespace std;
 
 using LL = long long;
 const int MX = 100000, MXLEN = 16;
+const LL MXVAL = 1000000000000000LL;
 const long double eps = 1e-5;
 #define ENDL "\n"
 
@@ -28,7 +29,7 @@ int main()
     for(int a = 1; a <= MX; a++)
     {
         int b0 = getNum(a);
-        for(LL b = a + b0; work(a, b); b += b0);
+        for(int b = a + b0; work(a, b); b += b0);
     }
     sort(ans.begin(), ans.end());
     ios::sync_with_stdio(false);
@@ -61,28 +62,19 @@ int getNum(int a)
     return res * a;
 }
 
-inline LL getNext(LL a, LL b)
+bool work(const LL a, const LL b)
 {
-    long double tmp = (long double)b / a * b;
-    if(tmp > 1e15 || fabsl(tmp - floorl(tmp + eps)) > eps) return -1;
-    return LL(tmp + eps);
-}
-
-bool work(LL a, LL b)
-{
-    long double tmp = (long double) b / a * b;
     bool res = false;
     string cur_str = to_string(a) + to_string(b);
-    if(cur_str.length() > MXLEN) return res;
-    while(true)
+    LL nxt = b;
+    while(nxt * b % a == 0)
     {
-        LL nxt = getNext(a, b);
-        if(nxt == -1) break;
+        nxt = nxt * b / a;
         cur_str += to_string(nxt);
-        if(cur_str.length() > MXLEN) break;
+        if(cur_str.length() > MXLEN || stoll(cur_str) > MXVAL)
+            return res;
         ans.push_back(stoll(cur_str));
         res = true;
-        a = b, b = nxt;
     }
     return res;
 }
