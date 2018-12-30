@@ -1,106 +1,140 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-typedef pair<int, int> pii;
-typedef pair<int, int> edge_t;
-const int MX = 100000 + 5, MK = 50 + 3;
+/*----------------- Templates Begin ----------------------------*/
 
-int P, dis[MX], dp[MX][MK];
-char vis[MX];
-bool ins[6000050];
-vector<edge_t> G[MX], G1[MX];
-
-void init(int N, int K)
-{
-	memset(dis + 1, 0x3f, sizeof(int[N]));
-	memset(vis + 1, 0, sizeof(char[N]));
-	for (int i = 1; i <= N; i++)
-	{
-		G[i].clear();
-		G1[i].clear();
+template<typename char_t = char, int MX = 2000000>
+struct Istream {
+private:
+	FILE *F;
+	char_t bf[MX], *p1, *p2;
+	int getchar() {
+		return p1 == p2 && (p2 = (p1 = bf) + fread(bf, sizeof(char_t), MX, F)) == p1 ? EOF : int(*p1++);
 	}
-	G1[1].push_back(make_pair(0, 0));
-	dp[0][0] = 1;
-	for (int i = 1; i <= N ; i++)
-		memset(dp[i], -1, sizeof(int[K + 1]));
-}
+public:
+	Istream() : F(stdin), p1(bf), p2(bf) {}
+	Istream(FILE *F) : F(F), p1(bf), p2(bf) {}
+	Istream(string f) : F(fopen(f.c_str(), "r")), p1(bf), p2(bf) {}
+	~Istream() {fclose(F);}
+	Istream& operator >> (char_t &c) {return c = getchar(), *this;}
+	Istream& operator >> (int &x) {
+		int f = 1, c;
+		x = 0;
+		while(!isdigit(c = getchar()))
+			if(c == '-') f = -1;
+		while(isdigit(c))
+			x = x * 10 + c - '0', c = getchar();
+		return x *= f, *this;
+	}
+};
 
-void Dijkstra()
+template<typename char_t = char, int MX = 2000000>
+struct Ostream {
+private:
+	FILE *F;
+	char_t bf[MX], *p1, *const p2;
+	void putchar(int x) {*p1++ = x; if(p1 == p2) flush();}
+public:
+	Ostream() : F(stdout), p1(bf), p2(bf + MX) {}
+	Ostream(FILE *F) : F(F), p1(bf), p2(bf + MX) {}
+	Ostream(string f) : F(fopen(f.c_str(), "w")), p1(bf), p2(bf + MX) {}
+	~Ostream() {flush(), fclose(F);}
+	Ostream& operator << (char_t &c) {return putchar(c), *this;}
+	Ostream& operator << (int x) {
+		static char dig[12], *top = dig;
+		if(x < 0) putchar('-'), x = -x;
+		do *top++ = '0' + x % 10;
+		while(x /= 10);
+		while(top != dig) putchar(*--top);
+		return *this;
+	}
+    Ostream& operator << (const char *s) {
+		while(*s) putchar(*s++);
+		return *this;
+	}
+	void flush() {fwrite(bf, sizeof(char_t), p1 - bf, F), p1 = bf;}
+};
+
+/*----------------- Templates End ----------------------------*/
+
+using edge_t = pair<int, int>;
+const int MX = 100005;
+
+int dis[MX], dp[MX][53], p;
+char vis[MX], ins[5500053];
+vector<edge_t> G1[MX], G2[MX];
+Istream<char> fin;
+Ostream<char> fout;
+
+void Dijkstra(int n)
 {
-	priority_queue<pii, vector<pii>, greater<pii> > Q;
-	Q.push(make_pair(dis[1] = 0, 1));
-	while (!Q.empty())
+	using pii = pair<int, int>;
+	priority_queue<pii, vector<pii>, greater<pii>> Q;
+    memset(dis + 1, 0x3f, sizeof(int[n]));
+	memset(vis + 1, 0, sizeof(char[n]));
+	Q.push({dis[1] = 0, 1});
+	while(!Q.empty())
 	{
-		pii cur = Q.top();
+		int u = Q.top().second;
 		Q.pop();
-		int nw = cur.second, d = cur.first;
-		if (vis[nw])
-			continue;
-		vis[nw] = true;
-		for (vector<edge_t>::iterator it = G[nw].begin(); it != G[nw].end(); ++it)
-			if (dis[it -> first] > d + it -> second)
-			{
-				dis[it -> first] = d + it -> second;
-				Q.push(make_pair(dis[it -> first], it -> first));
-			}
+		if(vis[u]) continue;
+		vis[u] = 1;
+		for(auto &e : G1[u])
+			if(dis[e.first] > dis[u] + e.second)
+				Q.push({dis[e.first] = dis[u] + e.second, e.first});
 	}
 }
 
-bool dfs(int n, int k)
+bool Dp(int n, int k)
 {
-	int sta = n * 60 + k;
-	if (ins[sta])
-		return true;
-	if (dp[n][k] != -1)
-		return false;
+	int sta = n * 55 + k;
+	if(ins[sta]) return true;
+	if(dp[n][k] != -1) return false;
 	int &cur = dp[n][k];
 	cur = 0;
 	ins[sta] = true;
-	for (vector<edge_t>::iterator it = G1[n].begin(); it != G1[n].end(); ++it)
+	for(auto &e : G2[n])
 	{
-		int tmp = it -> second - dis[n] + dis[it -> first];
-		if (tmp > k)
-			continue;
-		if (dfs(it -> first, k - tmp))
-		{
-			ins[sta] = false;
-			return true;
-		}
-		cur = (cur + dp[it -> first][k - tmp]) % P;
+		int tmp = dis[n] + k - dis[e.first] - e.second;
+		if(tmp < 0) continue;
+		if(Dp(e.first, tmp))
+			return ins[sta] = false, true;
+		cur = (cur + dp[e.first][tmp]) % p;
 	}
-	ins[sta] = false;
-	return false;
+	return ins[sta] = false;
 }
 
 int work()
 {
-	int N, M, K, ans = 0;
-	cin >> N >> M >> K >> P;
-	init(N, K);
-	while (M--)
+    int n, m, k, ans = 0;
+    fin >> n >> m >> k >> p;
+    for(int i = 1; i <= n; i++)
+        G1[i].clear(), G2[i].clear();
+    for(int i = 1, u, v, w; i <= m; i++)
+    {
+        fin >> u >> v >> w;
+        G1[u].push_back({v, w});
+        G2[v].push_back({u, w});
+    }
+    Dijkstra(n);
+	memset(ins + 1, 0, sizeof(char[5500050]));
+	for(int i = 1; i <= n; i++)
+		memset(dp[i], -1, sizeof(int[k + 1]));
+	G2[1].push_back({0, 0});
+	dp[0][0] = 1;
+	for(int i = 0; i <= k; i++)
 	{
-		int a, b, c;
-		cin >> a >> b >> c;
-		G[a].push_back(make_pair(b, c));
-		G1[b].push_back(make_pair(a, c));
-	}
-	Dijkstra();
-	for (int i = 0; i <= K; i++)
-	{
-		if(dfs(N, i))
-			return -1;
-		ans = (ans + dp[N][i]) % P;
+		if(Dp(n, i)) return -1;
+		ans = (ans + dp[n][i]) % p;
 	}
 	return ans;
 }
 
 int main()
 {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	int T;
-	cin >> T;
-	while (T--)
-		cout << work() << "\n";
-	return 0;
+    int T;
+    fin >> T;
+    while(T--)
+        fout << work() << "\n";
+    return 0;
 }
