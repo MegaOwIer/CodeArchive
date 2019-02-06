@@ -39,34 +39,33 @@ LL f0[MX], f1[MX];
 
 auto Sqr = [](LL u) -> LL {return u * u;};
 
-void GetF(LL n, int PI, int SqrtN, vector<LL>& val)
+void GetF(LL n, int PI, int SqrtN)
 {
     f0[0] = 0;
     for(int i = 1; i < SqrtN; i++)
         f0[i] = i, f1[i] = n / i;
     for(int i = 1; i <= PI; i++)
-        for(LL j : val)
-            if(j < Sqr(pr[i]))
-                break;
+    {
+        LL limit = Sqr(pr[i]);
+        for(int j = 1; j < SqrtN && n >= limit * j; j++)
+        {
+            LL tmp = n / j / pr[i];
+            if(tmp < SqrtN)
+                f1[j] -= f0[tmp] - i;
             else
-            {
-                if(j < SqrtN)
-                    f0[j] -= f0[j / pr[i]] - i;
-                else
-                {
-                    LL tmp = j / pr[i];
-                    if(tmp < SqrtN)
-                        f1[n / j] -= f0[tmp] - i;
-                    else
-                        f1[n / j] -= f1[n / tmp] - i;
-                }
-            }
+                f1[j] -= f1[n / tmp] - i;
+        }
+        for(int j = SqrtN - 1; j >= 1 && j >= limit; j--)
+            f0[j] -= f0[j / pr[i]] - i;
+    }
     for(int i = 1; i < SqrtN; i++)
         f0[i] = (f0[i] - 1) * 4, f1[i] = (f1[i] - 1) * 4;
 }
 
 LL G(LL n, int m, const LL N, const int PI, const int SqrtN)
 {
+    if(n <= 1 || pr[m] > n)
+        return 0;
     LL ans = max((n < SqrtN ? f0[n] : f1[N / n]) - 4 * m, 0LL);
     for(int i = m + 1; Sqr(pr[i]) <= n; i++)
     {
@@ -88,11 +87,6 @@ LL GetSum(LL n)
     int SqrtN = 1;
     for(; Sqr(SqrtN) <= n; SqrtN++);
     int cnt = upper_bound(pr + 1, pr + ::cnt + 1, SqrtN - 1) - pr - 1;
-    vector<LL> val;
-    for(int i = 1; i < SqrtN; i++)
-        val.push_back(i), val.push_back(n / i);
-    sort(val.begin(), val.end(), greater<LL>());
-    val.erase(unique(val.begin(), val.end()), val.end());
-    GetF(n, cnt, SqrtN, val);
+    GetF(n, cnt, SqrtN);
     return G(n, 0, n, cnt, SqrtN) + 1;
 }
