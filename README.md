@@ -3,7 +3,7 @@
 #### CodeChef: https://www.codechef.com
 #### Codeforces: https://codeforces.com
 #### HDU: http://acm.hdu.edu.cn
-#### LibreOJ: https://new.loj.ac
+#### LibreOJ: https://loj.ac
 #### Luogu: https://www.luogu.org
 #### POJ: http://poj.org
 #### SGU: https://codeforces.com/problemsets/acmsguru
