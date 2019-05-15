@@ -44,7 +44,6 @@ int main()
     for (int i = 1; i <= N; i++)
         for (int j = i; j <= N; j++)
             val[i][j] = val[i][j - 1] * P + ULL(s[j] - 'A' + 1);
-    initial(1, 5);
     for (int i = 1; i <= N; i++)
         for (int j = 1; i + j - 1 <= N; j++)
         {
