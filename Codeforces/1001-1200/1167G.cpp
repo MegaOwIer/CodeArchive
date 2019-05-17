@@ -25,10 +25,8 @@ long double solve(int x) {
         target = 2 * x - *nxt;
         while(pre >= all.begin() && *pre > target) --pre;
         if(pre < all.begin()) break;
-        if(*pre == target) {
+        if(*pre == target)
             ans = max(ans, alpha);
-            break;
-        }
         ++nxt;
     }
     return ans;
