@@ -1,31 +1,31 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-typedef long long LL;
-const int maxn=10000005;
 
-LL phi[maxn],ans;
-int p[664600],cnt,n;
-bool vis[maxn];
+using LL = long long;
+const int MX = 10000005;
 
-inline int read()
-{
-	int ans=0;  char ch=getchar();
-	while(ch<'0'||ch>'9')  ch=getchar();
-	while(ch>='0'&&ch<='9')  ans=ans*10+ch-'0',ch=getchar();
-	return ans;
-}
+int phi[MX], pr[664600], cnt;
+LL sum[MX];
+bool vis[MX];
 
-int main()
-{
-	n=read();
-	for(int i=1;i<=n;i++)  phi[i]=i;
-	for(int i=2;i<=n;i++)  if(!vis[i])
-	{
-		p[++cnt]=i;  phi[i]=i-1;
-		for(int j=i*2;j<=n;j+=i)  vis[j]=1,phi[j]-=phi[j]/i;
-	}
-	for(int i=2;i<=n;i++)  phi[i]+=phi[i-1];
-	for(int i=1;i<=cnt;i++)  ans+=phi[n/p[i]];
-	printf("%lld",(ans<<1)-cnt);
-	return 0;
+int main() {
+    int n;
+    scanf("%d", &n);
+    phi[1] = 1;
+    for(int i = 2; i <= n; i++) {
+        if(!vis[i]) pr[++cnt] = i, phi[i] = i - 1;
+        for(int j = 1, tmp; j <= cnt && (tmp = i * pr[j]) <= n; j++) {
+            vis[tmp] = true;
+            if(i % pr[j] == 0) {
+                phi[tmp] = phi[i] * pr[j];
+                break;
+            }
+            phi[tmp] = phi[i] * (pr[j] - 1);
+        }
+    }
+    for(int i = 1; i <= n; i++) sum[i] = sum[i - 1] + phi[i];
+    long long ans = 0;
+    for(int i = 1; i <= cnt; i++) ans += sum[n / pr[i]];
+    printf("%lld", ans * 2 - cnt);
+    return 0;
 }

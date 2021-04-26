@@ -39,8 +39,6 @@ LL ask(int l,int r,int id)
 
 int main()
 {
-	freopen("data.in","r",stdin);
-	freopen("data.out","w",stdout);
 	scanf("%d%lld",&m,&d);
 	build(1,m,1);
 	while(m--)
